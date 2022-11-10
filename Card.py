@@ -14,6 +14,7 @@ class Card:
         print("----------------------------------------------------")
         print(f"사용자 이름 : {self.username}")
         print(f"카드 번호 : {self.card_number}")
+        print(f"연결 계좌 번호 : {self.account_number}")
 
     # # 카드 존재 확인
     # def check_valid_card(self, card_number):
