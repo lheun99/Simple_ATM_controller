@@ -1,74 +1,75 @@
 from datetime import datetime
-now = datetime.now()
 
 
 class Account:
     # 계좌 개설
-    def __init__(self, account_number, username, balance):
-        self.account_number = account_number
+    def __init__(self, username, account_number, account_password, balance):
         self.username = username
+        self.account_number = account_number
+        self.account_password = account_password
         self.balance = balance
         self.related_card = []
+        now = datetime.now()
         self.transaction_history = [(now.strftime(
-            '%Y-%m-%d %H:%M:%S'), f"(입금) : {balance}원")]
+            '%Y-%m-%d %H:%M:%S'), f"(Initial deposit) : ${balance}")]
 
     # 초기 계좌 정보 출력
     def get_init_info(self):
         print()
-        print("<계좌 개설이 완료되었습니다>")
+        print("<Your account has been opened>")
         print("----------------------------------------------------")
-        print(f"[계좌 번호] : {self.account_number}")
-        print(f"[사용자 이름] : {self.username}")
-        print(f"[계좌 잔액] : {self.balance}원")
+        print(f"[Account number] : {self.account_number}")
+        print(f"[Username] : {self.username}")
+        print(f"[Account balance] : ${self.balance}")
         print()
 
     # 기본 계좌 정보 출력
     def get_info(self):
         print()
         print("----------------------------------------------------")
-        print(f"[{self.username}]님의 계좌 입니다.")
-        print(f"[계좌 잔액] : {self.balance}원")
+        print(f"[{self.username}]'s Account")
+        print(f"[Account balance] : ${self.balance}")
         print("----------------------------------------------------")
         print()
 
     # 거래 내역 조회 시 계좌 정보 출력
     def get_translation_history(self):
         print()
-        print(f"[{self.username}]님의 계좌 입니다.")
-        print(f"[계좌 잔액] : {self.balance}원")
+        print(f"[{self.username}]'s Account")
+        print(f"[Account balance] : ${self.balance}")
         print("====================================================")
-        print(f"[계좌 거래 내역]")
+        print(f"[Bank statement]")
         for date, history in self.transaction_history:
             print("----------------------------------------------------")
             print(f"[{date}] {history}")
         print("====================================================")
 
     # 입금
-
     def deposit(self):
+        now = datetime.now()
         print()
-        print("<입금하실 금액을 입력해주세요>")
-        print(f"[현재 잔액] : {self.balance}원")
+        print("<Please enter the amount you want to deposit>")
+        print(f"[Account balance] : ${self.balance}")
         print("----------------------------------------------------")
-        deposit_amount = int(input("입금 금액 : "))
+        deposit_amount = int(input("Deposit($) : "))
         self.balance += deposit_amount
         self.transaction_history.append((now.strftime(
-            '%Y-%m-%d %H:%M:%S'), f"(입금) : {deposit_amount}원"))
+            '%Y-%m-%d %H:%M:%S'), f"(Deposit) : ${deposit_amount}"))
         print("====================================================")
 
     # 출금
-
     def withdraw(self):
+        now = datetime.now()
         print()
-        print("<출금하실 금액을 입력해주세요>")
-        print(f"[현재 잔액] : {self.balance}원")
+        print("<Please enter the amount you want to withdraw>")
+        print(f"[Account balance] : ${self.balance}")
         print("----------------------------------------------------")
-        withdraw_amount = int(input("출금 금액 : "))
+        withdraw_amount = int(input("Withdraw($) : "))
         balance = self.balance
         if balance - withdraw_amount < 0:
-            print("**잔액이 부족해 출금이 불가능 합니다**")
+            print("**Withdrawal is not possible due to insufficient balance**")
         else:
             self.balance -= withdraw_amount
         self.transaction_history.append((now.strftime(
-            '%Y-%m-%d %H:%M:%S'), f"(출금) : {withdraw_amount}원"))
+            '%Y-%m-%d %H:%M:%S'), f"(Withdraw) : ${withdraw_amount}"))
         print("====================================================")
