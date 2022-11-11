@@ -6,7 +6,7 @@ card_list = []
 
 functions = '''
 ==================================================================
-1. Bank statement
+1. Bank statement (Transaction history)
 2. Deposit
 3. Withdraw
 4. Terminate Account inquiry
