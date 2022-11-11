@@ -5,20 +5,21 @@ account_list = []
 card_list = []
 
 functions = '''
-====================================================
+==================================================================
 1. Bank statement
 2. Deposit
 3. Withdraw
 4. Terminate Account inquiry
-====================================================
+==================================================================
 '''
 
 
 class ATM:
+    # 1. Open an account
     def register_account(self):
         print()
-        print("<Please enter the following information to open an account>")
-        print("----------------------------------------------------")
+        print("<Please enter the following information to open an account.>")
+        print("------------------------------------------------------------------")
 
         username = input("Username : ")
         account_number = int(input("Bank account number : "))
@@ -29,20 +30,23 @@ class ATM:
         account_list.append(account)
         account.get_init_info()
 
+    # 2. Card issuance
     def register_card(self):
         print()
-        print("<Please enter the following information to issue a card>")
-        print("----------------------------------------------------")
+        print("<Please enter the following information to issue a card.>")
+        print("------------------------------------------------------------------")
 
         card_number = int(input("Card number : "))
 
         is_valid_account = False
         is_valid_password = False
+        # check_account
         while not is_valid_account:
             account_number = int(input("Account number to be linked : "))
 
             for account in account_list:
                 if account.account_number == account_number:
+                    # check_password
                     while not is_valid_password:
                         account_password = int(
                             input("Account password to be linked : "))
@@ -52,12 +56,12 @@ class ATM:
                         else:
                             print()
                             print(
-                                "**Password does not match. Please enter it again**")
+                                "**Password does not match. Please enter it again.**")
                     is_valid_account = True
 
                 else:
                     print()
-                    print("**This account does not exist. Please enter it again**")
+                    print("**This account does not exist. Please enter it again.**")
                     break
 
         PIN = int(input("Card PIN number to use : "))
@@ -66,11 +70,13 @@ class ATM:
         card_list.append(card)
         card.get_init_info()
 
+    # 3. Account inquiry
     def check_card_and_get_account(self):
         print()
-        print("<Please enter the following information to inquiry your account>")
-        print("----------------------------------------------------")
+        print("<Please enter the following information to inquiry your account.>")
+        print("------------------------------------------------------------------")
 
+        # check_card
         is_valid_card = False
         while not is_valid_card:
             card_number = int(input("Please enter your card number : "))
@@ -80,9 +86,9 @@ class ATM:
                     is_valid_card = True
                 else:
                     print()
-                    print("**This card does not exist. Please enter it again**")
+                    print("**This card does not exist. Please enter it again.**")
                     break
-
+        # check_PIN
         is_valid_PIN = False
         while not is_valid_PIN:
             PIN = int(input("Please enter your PIN number : "))
@@ -92,7 +98,7 @@ class ATM:
                     is_valid_PIN = True
                 else:
                     print()
-                    print("**PIN number does not match. Please enter it again**")
+                    print("**PIN number does not match. Please enter it again.**")
                     break
 
         for account in account_list:
@@ -106,11 +112,15 @@ class ATM:
             account.get_info()
             print("Please select the function you want from your account.", end="\n")
             print(functions)
-            # 1. Transaction history
+            # 1. Bank statement (Transaction history)
             # 2. Deposit
             # 3. Withdraw
             # 4. Terminate Account inquiry
-            function_num = int(input("function number >> "))
+            try:
+                function_num = int(input("function number >> "))
+            except:
+                print("**Invalid input. Please enter again.**")
+                continue
 
             if function_num == 1:
                 account.get_translation_history()
