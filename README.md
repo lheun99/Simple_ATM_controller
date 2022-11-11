@@ -27,7 +27,7 @@ python main.py
 > #### 2. After checking the card, you can access the account and use related functions.
 > ![image](https://user-images.githubusercontent.com/97579695/201364251-56a8e290-1f8b-4690-83d3-8669273e7d5a.png)
 
-### *Bank statement (Transaction history) / Deposit / Withdraw*
+### *Bank statement (Transaction history) / Deposition / Withdraw function is available.*
 > #### 1. Bank statement (Transaction history)
 > ![image](https://user-images.githubusercontent.com/97579695/201365136-076ff3b4-a1e3-404e-b1b1-2a117852458a.png)
 > #### 2. Deposit
